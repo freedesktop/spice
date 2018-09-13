@@ -266,7 +266,7 @@ static replay_t read_binary(SpiceReplay *replay, const char *prefix, size_t *siz
             exit(1);
         }
         if ((ret = inflate(&strm, Z_NO_FLUSH)) != Z_STREAM_END) {
-            spice_error("inflate error %d (disc: %" PRIdPTR ")", ret, *size - strm.total_out);
+            spice_error("inflate error %d (disc: %ld)", ret, *size - strm.total_out);
             if (ret == Z_DATA_ERROR) {
                 /* last operation may be wrong. since we do the recording
                  * in red_worker, when there is a shutdown from the vcpu/io thread
